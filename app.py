@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, redirect, url_for, flash, session, send_from_directory, jsonify, make_response
 import os
-from config import config
+from config.config import config
 import logging
 # 配置日志
 logging.basicConfig(level=logging.INFO)
@@ -16,7 +16,7 @@ def create_app(config_name=None):
     config[config_name].init_app(app)
 
     # 初始化数据库
-    from database import init_database
+    from database.database import init_database
     if init_database():
         logger.info("数据库初始化完成")
     else:
@@ -172,7 +172,7 @@ def register():
 def get_dashboard_stats():
     """获取仪表盘统计数据"""
     try:
-        from database import db
+        from database.database import db
         
         # 获取教师数量
         teachers_sql = "SELECT COUNT(*) as count FROM teachers"
@@ -214,7 +214,7 @@ def get_teacher_profile():
                 "redirect": "/login"
             }), 401
         
-        from database import db
+        from database.database import db
         teacher_id = session['user_id']
         
         # 获取教师详细信息
@@ -244,7 +244,7 @@ def update_teacher_profile():
                 "redirect": "/login"
             }), 401
         
-        from database import db
+        from database.database import db
         teacher_id = session['user_id']
         
         # 获取请求数据
@@ -298,7 +298,7 @@ def student_profile():
         return redirect(url_for('login'))
 
     # 从数据库获取完整的用户信息
-    from database import db
+    from database.database import db
     student_id = session.get('user_id')
 
     sql = """
@@ -325,7 +325,7 @@ def student_dashboard():
         return redirect(url_for('login'))
 
     # 获取用户信息
-    from database import db
+    from database.database import db
     student_id = session.get('user_id')
 
     sql = """
@@ -353,7 +353,7 @@ def student_course_detail():
         return redirect(url_for('login'))
 
     # 获取用户信息
-    from database import db
+    from database.database import db
     student_id = session.get('user_id')
 
     sql = """
@@ -380,7 +380,7 @@ def student_problem_solve():
         return redirect(url_for('login'))
 
     # 获取用户信息
-    from database import db
+    from database.database import db
     student_id = session.get('user_id')
 
     sql = """
@@ -421,5 +421,3 @@ app.register_blueprint(password_reset_bp)
 
 if __name__ == '__main__':
     app.run(debug=app.config['DEBUG'])
-
-

@@ -1,5 +1,5 @@
 from flask import Blueprint, jsonify, request, session
-from database import db
+from database.database import db
 import logging
 import hashlib
 import csv

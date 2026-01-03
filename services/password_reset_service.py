@@ -14,8 +14,8 @@ import logging
 import requests
 from urllib.parse import urlencode
 
-from database import db
-from config import Config
+from database.database import db
+from config.config import Config
 
 # 导入阿里云SMS服务（如果后续需要时加载）
 try:

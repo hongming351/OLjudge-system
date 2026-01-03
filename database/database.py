@@ -1,6 +1,6 @@
 import pymysql
 from pymysql.cursors import DictCursor
-from config import Config
+from config.config import Config
 import logging
 import threading
 

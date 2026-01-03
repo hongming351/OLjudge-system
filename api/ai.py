@@ -1,10 +1,10 @@
 from flask import Blueprint, jsonify, request, session
-from database import db
+from database.database import db
 import logging
 import requests
 import json
 import re
-from config import Config
+from config.config import Config
 
 logger = logging.getLogger(__name__)
 ai_bp = Blueprint('ai', __name__)
