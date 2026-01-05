@@ -1,4 +1,4 @@
-from database import db
+from database.database import db
 from .check_login import hash_password, exist_user
 import logging
 
